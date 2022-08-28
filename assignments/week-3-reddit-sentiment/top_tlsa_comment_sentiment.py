@@ -1,5 +1,5 @@
 
-import secrets_reddit as sr
+from secrets_reddit import *
 import random
 
 from typing import Dict, List
@@ -20,9 +20,9 @@ def get_subreddit(display_name:str) -> Subreddit:
     Returns:
         Subreddit: [description]
     """
-    reddit = Reddit(client_id='K_7fPEHvj1qb6LBLhrQ8lQ',
-                    client_secret='SLWCiniS5yvlBSyXzfWio0sHgDBcIA',
-                    user_agent='gs user agent'
+    reddit = Reddit(client_id=REDDIT_API_CLIENT_ID,
+                    client_secret=REDDIT_API_CLIENT_SECRET,
+                    user_agent=REDDIT_API_USER_AGENT
                     )
     
     subreddit = reddit.subreddit(display_name) # YOUR CODE HERE
