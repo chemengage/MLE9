@@ -130,3 +130,6 @@ dmypy.json
 
 # mac
 .DS_Store
+
+# Fourthbrain assignment files
+secrets_reddit.py
