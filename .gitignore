@@ -133,3 +133,9 @@ dmypy.json
 
 # Fourthbrain assignment files
 secrets_reddit.py
+
+# Week 5 assignment files
+bank-full.csv
+bank.csv
+bank-names.txt
+bank.zip
