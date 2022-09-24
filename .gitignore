@@ -139,3 +139,9 @@ bank-full.csv
 bank.csv
 bank-names.txt
 bank.zip
+
+# Week 6 assignment files
+model_results.csv
+shap_gbt.csv
+shap_lr.csv
+shap_svm.csv

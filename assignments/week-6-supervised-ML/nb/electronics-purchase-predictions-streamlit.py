@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 import plotly.figure_factory as ff
+import shap
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -12,6 +13,16 @@ st.markdown("<h1 style='text-align: center; color: black;'>Online Electronics Pu
 # Import train dataset to DataFrame
 train_df = pd.read_csv("../dat/train.csv.gz", compression="gzip")
 model_results_df = pd.read_csv("../dat/model_results.csv")
+
+# Import SHAP values
+shap_lr_df = pd.read_csv("../dat/shap_lr.csv")
+shap_svm_df = pd.read_csv("../dat/shap_svm.csv")
+shap_gbt_df = pd.read_csv("../dat/shap_gbt.csv")
+
+# Remove nuisance index column
+shap_lr_df.drop(columns='Unnamed: 0', inplace=True)
+shap_svm_df.drop(columns='Unnamed: 0', inplace=True)
+shap_gbt_df.drop(columns='Unnamed: 0', inplace=True)
 
 # Drop uniformative columns
 train_df.drop(columns=["year", "month", "Weekend"], inplace=True)
@@ -147,9 +158,12 @@ with tab3:
         # Use tab2 as a guide!  
         # Use columns to separate visualizations for models
         # Include a plot for local and global explanability!
-     
-    st.header(model1_select)
+
+    with col1:
+        st.header(model1_select)
+        shap.plots.beeswarm(shap_gbt_df)
     
-    st.header(model2_select)
+    with col2:
+        st.header(model2_select)
 
     
