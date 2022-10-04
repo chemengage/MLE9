@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+from sklearn.metrics import r2_score
 import plotly.express as px
 import plotly.figure_factory as ff
 import streamlit as st
@@ -12,8 +14,20 @@ st.image(img_fuel, width=700)
 st.markdown("<h1 style='text-align: center; color: black;'>Fuel Efficiency</h1>", unsafe_allow_html=True)
 
 # Import train dataset to DataFrame
-train_df = pd.read_csv("../dat/train.csv.gz", compression="gzip")
-model_results_df = pd.read_csv("../dat/model_results.csv")
+train_df = pd.read_csv("../dat/train_features.csv", index_col=0)
+model_results_df = pd.read_csv("../dat/model_results_week_7.csv", index_col=0)
+test_labels_df = pd.read_csv("../dat/test_labels.csv", index_col=0)
+
+# Get error and r2 values
+y = np.array(test_labels_df)
+tpot_results = np.array(model_results_df['TPOT'])
+dnn_results = np.array(model_results_df['DNN'])
+
+tpot_error = tpot_results - y
+dnn_error = dnn_results - y
+
+tpot_r2 = r2_score(y, tpot_results)
+dnn_r2 = r2_score(y, dnn_results)
 
 # Create sidebar for user selection
 with st.sidebar:
